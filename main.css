@@ -1,12 +1,10 @@
-/* CSS variables = each var is prefixed with  -- */
-
 :root {
   --primary: #ddd; /* hex */
   --dark: #333;
   --light: #fff;
   --shadow: 0 5px 5px rgba(104, 104, 104, 0.8);
 }
-/* box-sizing: border-box; = for we use any padding or anything it doesn't effect with the width of the element */
+
 html {
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
@@ -15,7 +13,6 @@ html {
 
 body {
   background: #ccc;
-  /* top-bottom & left-right */
   margin: 30px 50px;
   line-height: 1.4;
 }
@@ -28,27 +25,23 @@ body {
 }
 
 img {
-  /*  max-width: 100; = coz i wanna the images stay within their container */
   max-width: 100%;
 }
+
 .wrapper {
   display: grid;
   grid-gap: 20px;
 }
 
 .main-nav ul {
-  /* ul has padding by default */
   padding: 0;
   display: grid;
   grid-gap: 20px;
-  /* i want don't any bullets */
   list-style: none;
-
   grid-template-columns: repeat(4, 1fr);
 }
 
 .main-nav a {
-  /* make uppercase */
   text-transform: uppercase;
   text-decoration: none;
   padding: 0.8rem;
@@ -57,7 +50,6 @@ img {
   box-shadow: var(--shadow);
   background: var(--primary);
   color: var(--dark);
-  /* to occupy the space for whole column and it can't be any element inline with it  */
   display: block;
 }
 
@@ -81,10 +73,8 @@ img {
   background-size: cover;
   background-position: center;
   min-height: 26rem;
-  /* if we do't add padding the content would be start from left edge therefore we need padding */
   padding: 3rem;
   display: flex;
-  /*i need each element in line separete therefore i use flex-direction: column;  */
   flex-direction: column;
   align-items: start;
   justify-content: center;
@@ -100,7 +90,7 @@ img {
   margin-top: 0;
   color: var(--light);
 }
-/* top-box is child from top-container and parent as well to (a, p, i) tags  */
+
 .top-box {
   display: grid;
   justify-content: center;
@@ -117,6 +107,7 @@ img {
 .top-box-b {
   grid-area: top-box-b;
 }
+
 .top-box-a a,
 .top-box-b a {
   text-transform: uppercase;
@@ -140,11 +131,9 @@ img {
 .boxes {
   display: grid;
   grid-gap: 20px;
-
-  /* to make more responsive if we add more boxes,with auto-fit can also add a new column automatically if the width is not large enough for boxes  ,to handle the column sizing and element wrapping for us so that the elements will wrap into rows when the width is not large enough to fit them in without any overflow  */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  /*   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
 }
+
 .box {
   background: var(--primary);
   box-shadow: var(--shadow);
@@ -159,7 +148,7 @@ img {
   padding: 3rem;
   background: var(--primary);
   box-shadow: var(--shadow);
-  /*  text-align: center; */
+
 }
 .portfolio {
   display: grid;
@@ -170,6 +159,17 @@ img {
   min-width: 100%;
   box-shadow: var(--shadow);
 }
+.info-details a {
+  box-shadow: var(--shadow);
+  background: var(--dark);
+  color: var(--light);
+}
+
+.info-details a:hover {
+  background: var(--light);
+  color: var(--dark);
+}
+/* footer */
 
 footer {
   margin-top: 3rem;
@@ -183,15 +183,116 @@ footer > p {
   font-size: 1.3em;
 }
 
-.info-details a {
-  box-shadow: var(--shadow);
-  background: var(--dark);
-  color: var(--light);
+/* breakpoints  */
+
+@media (max-width: 768px) {
+  .top-container {
+    grid-template-areas:
+      "show-case show-case"
+      "top-box-a top-box-b";
+  }
+
+  .show-case h1 {
+    font-size: 1.6rem;
+  }
+
+  .show-case p {
+    font-size: 1rem;
+  }
+  .show-case .btn {
+    margin-top: 2rem;
+  }
+
+  .top-box > .price {
+    font-size: 0.6rem;
+  }
+  .main-nav ul {
+    grid-gap: 0.5rem;
+  }
+  .main-nav {
+    margin-bottom: -1rem;
+  }
+  .main-nav a {
+    padding: 0.4rem;
+    text-align: center;
+    font-size: 0.7rem;
+  }
+
+  .info {
+    grid-gap: 1em;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .info .btn {
+    display: block;
+    text-align: center;
+    padding: 0.4rem;
+    margin-top: 0;
+  }
 }
 
-.info-details a:hover {
-  background: var(--light);
-  color: var(--dark);
+@media (max-width: 480px) {
+  .top-container {
+    grid-template-areas:
+      "show-case "
+      "top-box-a "
+      "top-box-b";
+  }
+
+  .main-nav ul {
+    padding: 0;
+    display: grid;
+    grid-gap: 10px;
+    list-style: none;
+    margin: 0.5;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .show-case h1 {
+    font-size: 1.2rem;
+  }
+
+  .top-box > .price {
+    font-size: 0.1rem;
+  }
+
+  .show-case p {
+    font-size: 0.5rem;
+  }
+  .show-case .btn {
+    margin-top: 1rem;
+  }
+
+  .main-nav ul {
+    grid-gap: 0.5rem;
+  }
+  .main-nav {
+    margin-bottom: -1rem;
+  }
+  .main-nav a {
+    padding: 0.2rem;
+    text-align: center;
+    font-size: 0.5rem;
+  }
+
+  .info {
+    grid-gap: 0.6em;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .info .btn {
+    display: block;
+    text-align: center;
+    padding: 0.4rem;
+    margin-top: 0;
+  }
+  footer > p {
+    font-size: 0.7em;
+  }
+
+  footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    padding: 0.5rem;
+    background-color: var(--dark);
+    color: var(--light);
+  }
 }
-
-
